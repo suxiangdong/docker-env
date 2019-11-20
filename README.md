@@ -1,2 +1,23 @@
-# docker-env
-学习研究docker，搞一套自己用的开发、测试环境。
+使用的开发环境
+===========
+
+## 方便使用，定义的常用命令
+### docker && laravel项目
+function dla() {
+    project_path="/data/www/backbone"
+    docker exec -it php_php-fpm bash -c "cd ${project_path} && php artisan ${1}"
+}
+
+function dpcli() {
+    docker exec -it php_php-fpm /bin/bash
+}
+
+function dcopt() {
+    project="backbone"
+    docker exec -it php_composer bash -c "cd ${project} && php artisan optimize"
+}
+
+# python
+function condaL() {
+    docker exec -it python_condaL /bin/bash
+}
