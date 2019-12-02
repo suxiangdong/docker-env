@@ -1,8 +1,33 @@
-使用的开发环境
+php && python 开发环境
 ===========
+使用docker搭建平常使用的开发环境。
 
-## 方便使用，定义的常用命令
-### docker && laravel项目
+## 目录结构
+- php（php 7.1）
+  - .env 配置文件
+  - source 定制镜像资源
+  - log 服务日志
+  - data 持久化数据
+  - conf 服务配置文件
+  - docker-compose.yml compose文件
+- python （conda python3.7）
+- shared（公共服务）
+
+## 安装 && 使用
+1、install docker. See https://docs.docker.com/v17.12/install
+2、install docker-compose. See https://docs.docker.com/compose/install
+3、gcl https://github.com/composer/composer.git
+4、先启动公共服务，后启动所需的环境（其他服务依赖于公共服务）。启动命令：docker-compose up （可选参数 -d ）
+5、（可选）为便于使用，可将以下自定义命令放入 bash | zsh 等shell中，也可自定义。
+
+## 配置文件
+1、.env为服务配置文件
+2、source下定制镜像可自定义
+
+## 常用命令
+
+### for laravel
+```bash
 function dla() {
     project_path="/data/www/backbone"
     docker exec -it php-fpm bash -c "cd ${project_path} && php artisan ${1}"
@@ -16,8 +41,10 @@ function dcopt() {
     project="backbone"
     docker exec -it composer bash -c "cd ${project} && php artisan optimize"
 }
-
-# python
+```
+### for python
+```bash
 function condaL() {
     docker exec -it condaL /bin/bash
 }
+```
