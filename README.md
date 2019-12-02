@@ -27,6 +27,7 @@ php && python 开发环境
 ## 常用命令
 
 ### for laravel
+example: dla tinker | dla 'queue:work --daemon --queue=test' | dla 'route:list'
 ```bash
 function dla() {
     project_path="/data/www/backbone"
