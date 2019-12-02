@@ -1,0 +1,59 @@
+version: '3.7'
+services:
+    redis:
+        image: redis:5.0-alpine
+        container_name: redis
+        networks:
+            - nets
+        ports:
+            - 6379:6379
+        volumes:
+            - ${DATA_PATH}/redis:/data
+        restart: always
+    memcached:
+        image: memcached:1.5-alpine
+        container_name: memcached
+        networks:
+            - nets
+        ports:
+            - 11211:11211
+        restart: always
+    beanstalkd:
+        image: schickling/beanstalkd:latest
+        container_name: beanstalkd_host
+        networks:
+            - nets
+        ports:
+            - 11300:11300
+        restart: always
+    mongo:
+        build: ./source/mongo
+        container_name: mongo
+        networks:
+            - nets
+        ports:
+            - 27017:27017
+        restart: always
+        volumes:
+            - ${DATA_PATH}/mongo:/data/db
+            - ${LOG_PATH}/mongo:/var/log/mongodb
+        environment:
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        networks:
+            - nets
+        ports:
+            - 3306:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - ${DATA_PATH}/mysql:/var/lib/mysql
+        restart: always
+
+#自定义网络
+networks:
+  nets:
+    external: false

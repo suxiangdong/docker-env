@@ -3,7 +3,7 @@ services:
     conda-learn:
         build: ./source/conda-learn
 #        image: continuumio/anaconda3
-        container_name: python_condaL
+        container_name: condaL
         command: /bin/bash
         stdin_open: true
         tty: true
@@ -16,20 +16,9 @@ services:
         volumes:
             - ${DOCUMENTROOT}:/data/www
         restart: always
-    mysql:
-        image: mysql:5.7
-        container_name: python_mysql
-        networks:
-            - nets
-        ports:
-            - 3307:3306
-        environment:
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        volumes:
-            - ${DATA_PATH}/mysql:/var/lib/mysql
-        restart: always
 
-#自定义网络
+# 加入公共服务网络
 networks:
   nets:
-    external: false
+    external: 
+        name: shared_nets
