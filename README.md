@@ -14,15 +14,15 @@ php && python 开发环境
 - shared（公共服务）
 
 ## 安装 && 使用
-1、install docker. See https://docs.docker.com/v17.12/install
-2、install docker-compose. See https://docs.docker.com/compose/install
-3、gcl https://github.com/composer/composer.git
-4、先启动公共服务，后启动所需的环境（其他服务依赖于公共服务）。启动命令：docker-compose up （可选参数 -d ）
-5、（可选）为便于使用，可将以下自定义命令放入 bash | zsh 等shell中，也可自定义。
+- install docker. See https://docs.docker.com/v17.12/install
+- install docker-compose. See https://docs.docker.com/compose/install
+- gcl https://github.com/composer/composer.git
+- 先启动公共服务，后启动所需的环境（其他服务依赖于公共服务）。启动命令：docker-compose up （可选参数 -d ）
+- （可选）为便于使用，可将以下自定义命令放入 bash | zsh 等shell中，也可自定义。
 
 ## 配置文件
-1、.env为服务配置文件
-2、source下定制镜像可自定义
+- .env为服务配置文件
+- source下定制镜像可自定义
 
 ## 常用命令
 
