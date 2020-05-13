@@ -26,6 +26,30 @@ services:
         ports:
             - 11300:11300
         restart: always
+    beanstalkd1:
+        image: schickling/beanstalkd:latest
+        container_name: beanstalkd1
+        networks:
+            - nets
+        ports:
+            - 11301:11300
+        restart: always
+    beanstalkd2:
+        image: schickling/beanstalkd:latest
+        container_name: beanstalkd2
+        networks:
+            - nets
+        ports:
+            - 11302:11300
+        restart: always
+    beanstalkd3:
+        image: schickling/beanstalkd:latest
+        container_name: beanstalkd3
+        networks:
+            - nets
+        ports:
+            - 11303:11300
+        restart: always
     mongo:
         build: ./source/mongo
         container_name: mongo
@@ -52,6 +76,20 @@ services:
         volumes:
             - ${DATA_PATH}/mysql:/var/lib/mysql
         restart: always
+    # elasticsearch:
+    #     image: elasticsearch:7.5.0
+    #     container_name: elasticsearch
+    #     networks:
+    #         - nets
+    #     ports:
+    #         - 9200:9200
+    #         - 9300:9300
+    #     restart: always
+    #     volumes:
+    #         - ${DATA_PATH}/elasticsearch:/var/lib/elasticsearch/data
+    #         - ${LOG_PATH}/elasticsearch:/var/lib/elasticsearch/logs
+    #     environment:
+    #         - discovery.type=single-node
 
 #自定义网络
 networks:

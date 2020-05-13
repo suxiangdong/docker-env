@@ -11,8 +11,12 @@ services:
             - nets
         ports:
             - 9000:8000
+            - 9001:8001
+            - 9002:8002
+            - 9003:8003
+            - 9004:8004
         environment:
-            - DISPLAY=172.16.2.44:0
+            - DISPLAY=docker.for.mac.localhost:0
         volumes:
             - ${DOCUMENTROOT}:/data/www
         restart: always

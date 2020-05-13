@@ -15,6 +15,14 @@ RUN apt-get update \
    && apt-get install -y libmcrypt-dev \
    && docker-php-ext-install mcrypt \
    && docker-php-ext-install mysqli \
-   && apt-get install -y libmagickwand-dev \
+   && apt-get install -y build-essential \
+   && apt-get install -y libmagickcore-dev libmagickwand-dev \
    && pecl install imagick-3.4.4 \
    && docker-php-ext-enable imagick \
+   && docker-php-ext-install gd \
+   && pecl install zip-1.13.5 \
+   && docker-php-ext-enable zip \
+   && php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
+   && php composer-setup.php \
+   && php -r "unlink('composer-setup.php');" \
+   && mv composer.phar /usr/local/bin/composer \

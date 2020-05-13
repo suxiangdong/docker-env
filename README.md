@@ -16,7 +16,6 @@ php && python 开发环境
 ## 安装 && 使用
 - install docker. See https://docs.docker.com/v17.12/install
 - install docker-compose. See https://docs.docker.com/compose/install
-- gcl https://github.com/composer/composer.git
 - 先启动公共服务，后启动所需的环境（其他服务依赖于公共服务）。启动命令：docker-compose up （可选参数 -d 以守护进程模式启动 , --build 重新编译镜像）
 - （可选）为便于使用，可将以下自定义命令放入 bash | zsh 等shell中，也可自定义。
 - 修改host（根据自己的nginx配置修改）: 127.0.0.1 static.hellorf.local dam.hellorf.local zip.hellorf.local manager.hellorf.local backbone.hellorf.local
@@ -28,7 +27,6 @@ php && python 开发环境
 ## 常用命令
 
 ### for laravel
-example: dla tinker | dla 'queue:work --daemon --queue=test' | dla 'route:list'
 ```bash
 function dla() {
     project_path="/data/www/backbone"
@@ -48,5 +46,17 @@ function dcopt() {
 ```bash
 function condaL() {
     docker exec -it condaL /bin/bash
+}
+```
+### for nodejs
+```bash
+function nodeL() {
+    docker exec -it nodejs /bin/bash
+}
+```
+### for golang
+```bash
+function nodeL() {
+    docker exec -it goL /bin/bash
 }
 ```

@@ -1,16 +1,16 @@
 version: '3.7'
 services:
-    composer:
-        image: composer:1.9.0
-        container_name: composer
-        command: /bin/bash
-        stdin_open: true
-        tty: true
-        networks:
-            - nets
-        volumes:
-            - ${DOCUMENTROOT}:/app
-        restart: always
+    # composer:
+    #     image: composer:1.9.0
+    #     container_name: composer
+    #     command: /bin/bash
+    #     stdin_open: true
+    #     tty: true
+    #     networks:
+    #         - nets
+    #     volumes:
+    #         - ${DOCUMENTROOT}:/app
+    #     restart: always
     php-fpm:
         build: ./source/php-fpm
         container_name: php-fpm
@@ -20,6 +20,8 @@ services:
             - 9000
         volumes:
             - ${DOCUMENTROOT}:/data/www
+        environment:
+            - LC_ALL=C.UTF-8
         restart: always
     nginx:
         image: nginx:1.16.1-alpine
@@ -35,7 +37,7 @@ services:
             - ${CONF_PATH}/nginx/conf.d:/etc/nginx/conf.d
             - ${CONF_PATH}/nginx/ssl:/etc/nginx/ssl
             - ${LOG_PATH}/nginx:/var/log/nginx/
-            # - ${DOCUMENTROOT}:/data/www/
+            - ${DOCUMENTROOT}:/data/www/
         restart: always
 
 # 加入公共服务网络

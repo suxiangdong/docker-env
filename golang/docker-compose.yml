@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+    golang:
+        image: golang:1.13.5-stretch
+        container_name: goL
+        command: /bin/bash
+        stdin_open: true
+        tty: true
+        networks:
+            - nets
+        ports:
+            - 7000:8000
+            - 7001:8001
+            - 7002:8002
+        volumes:
+            - ${DOCUMENTROOT}:/go
+        restart: always
+
+#自定义网络
+networks:
+  nets:
+    external: 
+        name: shared_nets
