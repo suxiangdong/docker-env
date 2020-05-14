@@ -51,7 +51,7 @@ services:
             - 11303:11300
         restart: always
     mongo:
-        build: ./source/mongo
+        image: mongo:4.0.6
         container_name: mongo
         networks:
             - nets
@@ -61,9 +61,9 @@ services:
         volumes:
             - ${DATA_PATH}/mongo:/data/db
             - ${LOG_PATH}/mongo:/var/log/mongodb
-        environment:
-            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+        # environment:
+        #     - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+        #     - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
     mysql:
         image: mysql:5.7
         container_name: mysql
